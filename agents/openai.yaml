@@ -1,0 +1,4 @@
+interface:
+  display_name: "大壮的 PPT Skill"
+  short_description: "数据驱动咨询风策略PPT框架生成可编辑转换与修复流程"
+  default_prompt: "Use $dazhuang-ppt-skill to turn my marketing pitch notes into a data-backed consulting-style PPT."
