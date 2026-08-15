@@ -1,89 +1,162 @@
 ---
-name: dazhuang-ppt-skill
-description: Create data-backed consulting-style strategy PPT workflows and decks, especially Chinese marketing pitch, brand strategy, campaign planning, H2/yearly planning, pre-strategy/front-planning, competitor analysis, and "make my PPT logic sharper" tasks. Use when the user asks to write a PPT, build a pitch deck framework, turn notes/MD/PDF into a slide outline or deck, make a McKinsey-style data-heavy presentation, match a front strategy to a later execution plan, generate a codex-ppt image deck, convert it to editable PPT, or repair PowerPoint font/garbled-text issues after conversion.
+name: datappt-skill
+description: Orchestrate and produce data-backed strategy presentations from rough notes, MD/PDF frameworks, research, spreadsheets, screenshots, existing decks, and multi-thread project artifacts. Use for Chinese marketing pitches, brand strategy, campaign planning, annual/H2/monthly plans, competitor and audience analysis, data-heavy consulting decks, cross-conversation PPT projects, editable PowerPoint delivery, codex-ppt image decks, image-to-editable reconstruction, or final-deck integration and repair.
 ---
 
-# Dazhuang PPT Skill
+# DataPPT Skill
 
-## Overview
+## Mission
 
-Use this skill to turn rough business, marketing, or pitch material into an answer-first consulting deck: strategy logic first, per-slide data evidence second, slide production and validation last.
+Turn a complex presentation project into a controlled chain:
 
-Prefer this skill for Chinese commercial decks where the user cares about "前策", "比稿", "洞察", "策略推导", "每页都有数据", "麦肯锡风", "无封面 10 页", "按月拆解", or "转成可编辑 PPT".
+`source authority -> business question -> data evidence -> conclusion -> slide contract -> visual route -> validated deliverable -> resumable handoff`
 
-## Core Rules
+Own the project from intake through final integration. Use other presentation skills as production engines; do not duplicate or weaken their hard requirements.
 
-1. Start from the business question, not from slide decoration.
-2. Make every slide answer one question and carry at least one data object: number, index, matrix, heatmap, funnel, timeline, benchmark, or target.
-3. When real data is missing and the user allows it, create "策略假设数据" and label it as replaceable by platform/backstage sources later.
-4. Show the derivation chain: data input -> pattern/insight -> strategic implication -> event/content/action.
-5. Put the key takeaway under the title, not in a bottom conclusion bar, unless the user explicitly wants a footer conclusion.
-6. Avoid coarse ranges when the user asks for monthly strategy. Use `7月`, `8月`, `9月`, `10月`, `11月`, `12月` as separate labels instead of `7-8月` or `9-10月`.
-7. Match later execution plans by leaning the front strategy toward the same direction, but do not copy later-plan content or data into the front-strategy section unless asked.
-8. For Chinese editable PPT delivery, prefer `Microsoft YaHei` or another Office-safe CJK font over `PingFang SC`.
+## Non-Negotiable Rules
 
-## Workflow
+1. Start from the business decision, not decoration.
+2. Make every analytical slide answer one question and contain at least one meaningful data object.
+3. Use the user's latest approved framework as the storyline authority. Treat old decks and handoffs as history unless explicitly promoted.
+4. Separate verified facts, third-party evidence, and strategy assumptions. Never present assumptions as observed facts.
+5. Show the derivation chain: `data -> pattern -> insight -> implication -> action`.
+6. Put the answer in the title or the sentence directly below it. Avoid detached bottom conclusion bars unless requested.
+7. Preserve approved visual samples, brand rules, page-level decisions, and later-plan direction across revisions.
+8. State whether the final deck is `image-based`, `object-level editable`, or `hybrid/reconstructed editable`.
+9. Keep intermediates under `work/` and final user-facing PPTX files under `outputs/`.
 
-### 1. Intake
+## Phase 1: Establish Project Truth
 
-Inspect all supplied materials before building the framework: previous answers, MD outlines, PDFs, screenshots, existing PPTs, brand assets, and later execution plans. Extract immutable constraints such as page count, no-cover requirement, required visual style, user-supplied background image, and page-by-page feedback.
+Inspect all supplied notes, frameworks, PDFs, spreadsheets, screenshots, decks, brand assets, previous task outputs, and later execution plans.
 
-If the user asks only for the framework, deliver a structured outline. If the user asks to generate the PPT, proceed to production.
+Resolve conflicts in this order:
 
-### 2. Strategy Storyline
+1. Latest explicit user instruction and latest approved framework.
+2. Current raw/source data.
+3. Latest approved visual sample, brand guide, or editable template.
+4. Current approved strategy decisions and later-plan direction.
+5. Previous decks, chat summaries, and handoff documents.
 
-Use a pyramid route:
+Record meaningful conflicts and decisions. Do not let an old handoff silently override a newer framework.
 
-`Benchmark / Market Context -> User Demand Shift -> Platform Behavior -> Content/Event Necessity -> Audience Conversion -> Strategic Model -> Execution Bridge`
+For multi-stage, multi-thread, or revision-heavy work, initialize project state with `scripts/init_datappt_project.py` and maintain the four files copied from `assets/project-starter/`.
 
-For marketing-event decks, make the strategy end in a macro打法 rather than a single creative idea. Typical output directions:
+Read `references/project-orchestration.md` before splitting modules, merging task outputs, resuming a project, or preparing a handoff.
 
-- `IP体系化`: turn one-off events into a recognizable mother IP and monthly columns.
-- `年轻新锐化`: make participation, language, creators, and emotional hooks younger.
-- `套系生态化` / `价值套系化`: connect single-product attention to household scenarios, suites, services, and higher-value conversion.
+## Phase 2: Build the Strategy and Evidence System
 
-Read `references/deck-framework.md` when building the slide storyline or a Gree/air-conditioner/H2-like deck.
+Use a conclusion-first pyramid. For each framework module, define:
 
-### 3. Slide Contract
+- `Business question`: the decision this module supports.
+- `Data needed`: the minimum evidence required.
+- `Conclusion`: the judgment the evidence should prove or test.
+- `Demo`: a representative chart, table, or layout reference.
 
-For every slide, define:
+For each slide, define:
 
-- `Page question`: what the slide proves.
-- `Answer-title`: the title should contain the conclusion or sharp judgment.
-- `Takeaway`: one sentence directly under the title.
-- `Data`: concrete numbers, indexes, matrices, funnels, or targets.
-- `Derivation`: how the data proves the takeaway.
-- `Visual`: one dominant chart/table/matrix plus restrained supporting cards.
-- `Role`: why this slide is needed before the next slide.
+- `Page question`
+- `Answer-title`
+- `Takeaway`
+- `Evidence objects`
+- `Derivation`
+- `Dominant visual`
+- `Storyline role`
+- `Source / time window / evidence grade`
+- `Replacement field` for temporary data
 
-If a slide lacks data, add a reasonable strategy-assumption dataset or ask for the missing data only when guessing would create material risk.
+Use evidence grades:
 
-### 4. Production
+- `A`: user-provided or platform/backend source, directly verified.
+- `B`: credible public or third-party source, cited with date and scope.
+- `C`: strategy assumption or synthetic placeholder, visibly marked for replacement.
 
-When making an actual deck:
+If the user allows provisional data, create internally coherent C-grade data and a replacement map. Never invent sources. Read `references/data-and-slide-contract.md` for the detailed data pack and module-return contract.
 
-1. Create or refine a clean MD outline first.
-2. Use `codex-ppt` for a visually unified image-based PPT when the user asks for a polished deck.
-3. Use `image-to-editable-ppt` when the user wants editable slides from screenshots/image-based decks.
-4. Include speaker notes when the deck is meant for a pitch or review.
-5. Read `references/production-checklist.md` before running production, editable conversion, or final QA.
+Read `references/deck-framework.md` when building a marketing, brand, campaign, annual, H2, or front-strategy storyline.
 
-### 5. QA
+## Phase 3: Control Specialist Work and Revisions
 
-Before final delivery, verify:
+Split independent research or data modules only when boundaries are clear. Each module must return:
 
-- Slide count and no-cover/page-order constraints.
-- Every slide has visible data and a clear title takeaway.
-- No bottom conclusion bar when the user rejected that pattern.
-- Monthly labels are split when requested.
-- Text does not overflow or overlap.
-- The PPTX opens or is at least structurally valid.
-- If PowerPoint repairs the deck or text appears as symbols/garbage, run `scripts/fix_ppt_font_normalize.py` and deliver the repaired `_fixed.pptx`.
+1. cleaned data or calculation file;
+2. source and time-window notes;
+3. three to five decision-relevant findings;
+4. slide-ready data objects or one to two page proposals;
+5. unresolved questions and replacement fields.
 
-Report the final file path and validation result plainly.
+The parent project owns storyline integration, terminology, evidence grading, style consistency, and the final deck. Update the decision log after page-level feedback so rejected patterns do not return.
+
+## Phase 4: Select Exactly One Delivery Route
+
+Read `references/delivery-routing.md` before authoring a PPTX.
+
+### Route A — Native editable PPT
+
+Choose when the user asks for editable slides, an editable template exists, or charts/text must be revised frequently.
+
+- Use the installed `Presentations` skill and its required `@oai/artifact-tool` workflow for new or edited local PPTX files.
+- If a user-provided editable PPTX supplies the visual system, inherit its master/layout/slide structure instead of flattening it.
+- Use native text, shapes, tables, and charts; use image generation only for photographic or illustrative assets.
+- This is the default route for editable-from-scratch data decks.
+
+### Route B — codex-ppt image deck
+
+Choose when visual unity and presentation polish matter more than object-level editability.
+
+- Read the installed `codex-ppt/SKILL.md` in full and follow its outline, style, backend, one-sample approval, slide-job, subagent, QA, notes, and assembly gates.
+- Treat every page as a generated 16:9 image.
+- Do not claim that the resulting text, charts, or shapes are editable.
+
+### Route C — codex-ppt to editable reconstruction
+
+Choose when the user explicitly wants both codex-ppt visual fidelity and editable PowerPoint objects.
+
+1. Complete Route B and approve the image deck.
+2. Read and run the installed `image-to-editable-ppt` skill.
+3. Rebuild each page into native objects with `editppt`; do not use a full-slide screenshot plus editable text overlay.
+4. Finalize only after every page is recorded and validation passes.
+
+This route is slower and can introduce reconstruction variance. State that tradeoff before production.
+
+### Route D — Framework or analysis only
+
+Choose when the user requests only a storyline, data plan, diagnosis, or slide outline. Do not manufacture a PPTX.
+
+If the request names `codex-ppt` and also requires editability, default to Route C. If it only says “可编辑PPT”, default to Route A.
+
+## Phase 5: Visual Direction
+
+Treat visual style separately from strategy content.
+
+- If the user names a `codex-ppt` style reference, load and apply it only within Route B or Route C.
+- If the user provides an editable reference deck, prefer Route A and inherit the deck's real layouts.
+- Preserve one palette, typography system, chart language, image treatment, and source-footer convention.
+- Prefer one dominant composition over repeated UI-card grids.
+- For Chinese Office delivery, prefer `Microsoft YaHei` or another Office-safe CJK font.
+
+## Phase 6: QA, Integration, and Handoff
+
+Read `references/production-checklist.md` before finalization.
+
+Verify:
+
+- storyline continuity and page order;
+- every claim's evidence grade, source, period, and replacement status;
+- chart/data consistency;
+- approved feedback and rejected-pattern compliance;
+- slide count, aspect ratio, notes, fonts, overflow, overlap, media, and openability;
+- final output type: image-based, native editable, or reconstructed editable;
+- all final files are under `outputs/` and temporary files remain under `work/`.
+
+Update `PROJECT_HANDOFF.md` with the current authority set, final outputs, unfinished replacements, and the exact next action. Report the final path and validation result plainly.
 
 ## Resources
 
-- `references/deck-framework.md`: reusable logic for strategy and marketing-event pitch decks, including the 10-page H2/Gree-style structure.
-- `references/production-checklist.md`: deck generation, editable conversion, and repair checklist.
-- `scripts/fix_ppt_font_normalize.py`: replace fragile CJK font declarations and normalize PPTX package structure.
+- `references/project-orchestration.md`: source hierarchy, project files, module work, revisions, integration, and handoff.
+- `references/data-and-slide-contract.md`: evidence grades, data map, slide contract, and module return schema.
+- `references/deck-framework.md`: reusable strategy storyline patterns.
+- `references/delivery-routing.md`: native editable, codex-ppt image, and reconstructed editable routes.
+- `references/production-checklist.md`: production, conversion, repair, validation, and delivery checks.
+- `assets/project-starter/`: reusable project-control templates.
+- `scripts/init_datappt_project.py`: initialize resumable project state under `work/datappt/`.
+- `scripts/fix_ppt_font_normalize.py`: normalize fragile CJK font declarations in existing PPTX packages.

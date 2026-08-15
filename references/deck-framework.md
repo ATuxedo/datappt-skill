@@ -1,6 +1,6 @@
 # Consulting Strategy Deck Framework
 
-Use this reference when building a data-backed marketing, brand, or campaign strategy PPT. Keep the logic modular: if the user gives a different industry, replace the category examples but preserve the derivation pattern.
+Use this reference when building a data-backed marketing, brand, or campaign strategy PPT. Keep the logic modular: if the user gives a different industry, replace the category examples but preserve the derivation pattern. If the user supplies a more specific framework, use it as the authority and translate every module into `what data / what conclusion / demo` before writing slides.
 
 ## Default Pyramid
 
@@ -62,8 +62,8 @@ Use this when the deck resembles the Gree H2 Douyin/event marketing pitch.
 
 ## Style Rules
 
-- Use a consulting page style: restrained palette, strong grid, white panels, blue or one accent color, compact but readable charts.
+- Use the approved sample, brand system, template, or named style reference as the visual authority. Consulting structure does not require a blue corporate palette.
 - Use a conclusion under the title; do not put a separate bottom conclusion when the user rejected it.
 - Avoid oversized landing-page hero layouts for operational/strategy decks.
-- Use cards only for repeated items, modals, or framed tools. Do not nest cards inside cards.
+- Use cards only when they express real grouping. Prefer a flat canvas, one dominant chart, direct annotations, and restrained supporting evidence.
 - Preserve user-supplied backgrounds if the user explicitly gives one.
